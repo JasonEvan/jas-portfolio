@@ -17,16 +17,18 @@ export interface Profile {
 export const useProfile = () => {
   const { db } = useFirebase();
   const { isSafeForSameDoc } = useImageBase64();
-  const docRef = doc(db, "profile", "main");
+  const docRef = db ? doc(db, "profile", "main") : null;
 
   const getProfile = async () => {
+    if (!docRef) return null;
+    
     const snap = await getDoc(docRef);
     if (!snap.exists()) return null;
 
     const data = snap.data() as Profile;
 
     // If avatar is stored separately, fetch it
-    if (data.hasSeparateAvatar) {
+    if (data.hasSeparateAvatar && db) {
       const avatarSnap = await getDoc(doc(db, "profile/main/images/avatar"));
       if (avatarSnap.exists()) {
         data.avatarBase64 = avatarSnap.data()?.base64;
@@ -37,6 +39,8 @@ export const useProfile = () => {
   };
 
   const updateProfile = async (data: Partial<Profile>) => {
+    if (!docRef || !db) return;
+
     const profileData = { ...data };
     const avatarBase64 = profileData.avatarBase64;
 
