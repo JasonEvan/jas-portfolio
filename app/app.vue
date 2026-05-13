@@ -1,6 +1,11 @@
+<!-- app.vue -->
+<script setup lang="ts">
+const { initAuthListener } = useAuth();
+if (import.meta.client) initAuthListener();
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
