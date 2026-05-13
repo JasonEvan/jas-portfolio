@@ -17,7 +17,6 @@ export default defineNuxtConfig({
     { path: '~/components/landing', pathPrefix: false },
     { path: '~/components/global',  pathPrefix: false },
     { path: '~/components/ui',      pathPrefix: false },
-    { path: '~/components/lanyard', pathPrefix: false },
     '~/components'
   ],
 
@@ -25,7 +24,7 @@ export default defineNuxtConfig({
 
   vite: {
     optimizeDeps: {
-      include: ['firebase/app', 'firebase/auth', 'firebase/firestore', 'three'],
+      include: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
     },
   },
 

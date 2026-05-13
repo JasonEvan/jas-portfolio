@@ -12,10 +12,8 @@ const profile = ref({
   linkedinUrl: "",
   twitterUrl: "",
   avatarBase64: "",
-  lanyardPhotoBase64: "",
 });
 
-const loading = ref(false);
 const saving = ref(false);
 
 const handleSave = async () => {
@@ -75,10 +73,6 @@ const handleSave = async () => {
 
           <div class="image-grid">
             <ImageUpload v-model="profile.avatarBase64" label="Avatar Profil" />
-            <ImageUpload
-              v-model="profile.lanyardPhotoBase64"
-              label="Foto Lanyard"
-            />
           </div>
 
           <div class="actions">
@@ -87,17 +81,6 @@ const handleSave = async () => {
             >
           </div>
         </form>
-      </div>
-
-      <div class="preview-section">
-        <h3>Preview Lanyard</h3>
-        <div class="lanyard-preview glass">
-          <LanyardCanvas
-            :photo-base64="profile.lanyardPhotoBase64"
-            :name="profile.name"
-            :role="profile.title"
-          />
-        </div>
       </div>
     </div>
   </div>
@@ -110,7 +93,7 @@ const handleSave = async () => {
 
 .admin-grid {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr;
   gap: 32px;
   align-items: start;
 }

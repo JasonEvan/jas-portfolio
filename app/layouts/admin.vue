@@ -5,7 +5,7 @@
       <div class="sidebar-header">
         <h3 class="text-gradient">Portfolio Admin</h3>
       </div>
-      
+
       <nav class="sidebar-nav">
         <NuxtLink
           v-for="item in navItems"
@@ -43,49 +43,52 @@
         <slot />
       </main>
     </div>
-    
+
     <Toaster position="top-right" richColors />
   </div>
 </template>
 
 <script setup lang="ts">
-import { 
-  LayoutDashboard, 
-  User, 
-  FolderOpen, 
-  Briefcase, 
-  Zap, 
+import {
+  LayoutDashboard,
+  User,
+  FolderOpen,
+  Briefcase,
+  Zap,
   MessageSquare,
-  LogOut as LucideLogOut
-} from 'lucide-vue-next'
-import { Toaster } from 'vue-sonner'
+  LogOut as LucideLogOut,
+} from "lucide-vue-next";
+import { Toaster } from "vue-sonner";
 
-definePageMeta({ middleware: 'auth' })
+definePageMeta({ middleware: "auth" });
 
-const { logout } = useAuth()
-const authStore = useAuthStore()
-const user = computed(() => authStore.user)
+const { logout } = useAuth();
+const authStore = useAuthStore();
+const user = computed(() => authStore.user);
 
 const navItems = [
-  { icon: LayoutDashboard, label: 'Dashboard',        to: '/admin' },
-  { icon: User,            label: 'Profil & Lanyard', to: '/admin/profile' },
-  { icon: FolderOpen,      label: 'Proyek',           to: '/admin/projects' },
-  { icon: Briefcase,       label: 'Pengalaman',       to: '/admin/experience' },
-  { icon: Zap,             label: 'Skill',            to: '/admin/skills' },
-  { icon: MessageSquare,   label: 'Testimoni',        to: '/admin/testimonials' },
-]
+  { icon: LayoutDashboard, label: "Dashboard", to: "/admin" },
+  { icon: User, label: "Profil", to: "/admin/profile" },
+  { icon: FolderOpen, label: "Proyek", to: "/admin/projects" },
+  { icon: Briefcase, label: "Pengalaman", to: "/admin/experience" },
+  { icon: Zap, label: "Skill", to: "/admin/skills" },
+  { icon: MessageSquare, label: "Testimoni", to: "/admin/testimonials" },
+];
 
-const route = useRoute()
+const route = useRoute();
 const currentPageTitle = computed(() => {
-  const item = navItems.find(i => route.path === i.to || (i.to !== '/admin' && route.path.startsWith(i.to)))
-  return item ? item.label : 'Dashboard'
-})
+  const item = navItems.find(
+    (i) =>
+      route.path === i.to || (i.to !== "/admin" && route.path.startsWith(i.to)),
+  );
+  return item ? item.label : "Dashboard";
+});
 
 const handleLogout = async () => {
-  if (confirm('Apakah Anda yakin ingin keluar?')) {
-    await logout()
+  if (confirm("Apakah Anda yakin ingin keluar?")) {
+    await logout();
   }
-}
+};
 </script>
 
 <style scoped>

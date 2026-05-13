@@ -1,3 +1,2 @@
 // types/index.ts
-export * from './models'
-export * from './lanyard'
+export * from "./models";

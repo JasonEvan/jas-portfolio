@@ -11,10 +11,6 @@ export interface Profile {
   twitterUrl: string
   resumeUrl: string
   avatarBase64: string
-  lanyardPhotoBase64: string
-  lanyardIdText: string
-  lanyardRoleText: string
-  lanyardOrgText: string
 }
 
 export const useProfile = () => {

@@ -36,10 +36,6 @@ onMounted(async () => {
           <BaseButton variant="ghost" size="lg">Contact Me</BaseButton>
         </div>
       </div>
-      
-      <div class="hero-visual">
-        <LanyardCanvas />
-      </div>
     </div>
   </section>
 </template>
@@ -58,20 +54,23 @@ onMounted(async () => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 60px;
+  text-align: center;
 }
 
 .hero-content {
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
   color: var(--color-text-muted);
-  max-width: 500px;
+  max-width: 600px;
   margin: 32px 0 48px;
 }
 
@@ -80,26 +79,9 @@ onMounted(async () => {
   gap: 20px;
 }
 
-.hero-visual {
-  position: relative;
-  z-index: 5;
-}
-
 @media (max-width: 1024px) {
-  .container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding-top: 60px;
-  }
-  
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hero-actions {
-    justify-content: center;
+  .hero-subtitle {
+    font-size: 1.25rem;
   }
 }
 </style>
