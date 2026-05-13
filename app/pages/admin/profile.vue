@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { toast } from "vue-sonner";
+
 definePageMeta({
   layout: "admin",
 });
+
+const { getProfile, updateProfile } = useProfile();
 
 const profile = ref({
   name: "",
@@ -16,14 +20,30 @@ const profile = ref({
 
 const saving = ref(false);
 
+// Fetch profile data on mount
+onMounted(async () => {
+  try {
+    const data = await getProfile();
+    if (data) {
+      profile.value = {
+        ...profile.value,
+        ...data,
+      };
+    }
+  } catch (err) {
+    console.error("Failed to fetch profile:", err);
+    toast.error("Gagal mengambil data profil");
+  }
+});
+
 const handleSave = async () => {
   saving.value = true;
   try {
-    // Save logic here
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Profile saved:", profile.value);
+    await updateProfile(profile.value);
+    toast.success("Profil berhasil diperbarui");
   } catch (err) {
-    console.error(err);
+    console.error("Save error:", err);
+    toast.error("Gagal menyimpan perubahan");
   } finally {
     saving.value = false;
   }

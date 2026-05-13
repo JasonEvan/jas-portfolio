@@ -1,21 +1,63 @@
+<script setup lang="ts">
+const { getProfile } = useProfile();
+const profile = ref({
+  name: "Jason Evan",
+  title: "Full Stack Developer & Digital Creator",
+  githubUrl: "#",
+  linkedinUrl: "#",
+  twitterUrl: "#",
+});
+
+onMounted(async () => {
+  const data = await getProfile();
+  if (data) {
+    profile.value = {
+      ...profile.value,
+      ...data,
+    };
+  }
+});
+</script>
+
 <template>
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-left">
-          <h2 class="text-gradient">Jason Evan</h2>
-          <p>Full Stack Developer & Digital Creator</p>
+          <h2 class="text-gradient">{{ profile.name }}</h2>
+          <p>{{ profile.title }}</p>
         </div>
         <div class="footer-right">
           <div class="socials">
-            <a href="#" target="_blank" class="social-link">Github</a>
-            <a href="#" target="_blank" class="social-link">LinkedIn</a>
-            <a href="#" target="_blank" class="social-link">Twitter</a>
+            <a
+              v-if="profile.githubUrl"
+              :href="profile.githubUrl"
+              target="_blank"
+              class="social-link"
+              >Github</a
+            >
+            <a
+              v-if="profile.linkedinUrl"
+              :href="profile.linkedinUrl"
+              target="_blank"
+              class="social-link"
+              >LinkedIn</a
+            >
+            <a
+              v-if="profile.twitterUrl"
+              :href="profile.twitterUrl"
+              target="_blank"
+              class="social-link"
+              >Twitter</a
+            >
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {{ new Date().getFullYear() }} Jason Evan. Built with Nuxt 3 & Firebase.</p>
+        <p>
+          &copy; {{ new Date().getFullYear() }} {{ profile.name }}. Built with
+          Nuxt 3 & Firebase.
+        </p>
       </div>
     </div>
   </footer>

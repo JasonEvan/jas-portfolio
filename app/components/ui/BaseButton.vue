@@ -1,27 +1,36 @@
 <script setup lang="ts">
-defineProps<{
-  type?: 'button' | 'submit' | 'reset'
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
-  size?: 'sm' | 'base' | 'lg'
-  loading?: boolean
-  disabled?: boolean
-}>()
+const props = defineProps<{
+  type?: "button" | "submit" | "reset";
+  to?: string;
+  href?: string;
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+  size?: "sm" | "base" | "lg";
+  loading?: boolean;
+  disabled?: boolean;
+}>();
+
+const isNuxtLink = computed(() => !!props.to);
+const isExternalLink = computed(() => !!props.href);
+const componentType = computed(() => {
+  if (isNuxtLink.value) return resolveComponent("NuxtLink");
+  if (isExternalLink.value) return "a";
+  return "button";
+});
 </script>
 
 <template>
-  <button
-    :type="type || 'button'"
+  <component
+    :is="componentType"
+    :type="!to && !href ? type || 'button' : undefined"
+    :to="to"
+    :href="href"
     class="btn"
-    :class="[
-      variant || 'primary',
-      size || 'base',
-      { loading, disabled }
-    ]"
+    :class="[variant || 'primary', size || 'base', { loading, disabled }]"
     :disabled="disabled || loading"
   >
     <span v-if="loading" class="loader"></span>
     <slot v-else />
-  </button>
+  </component>
 </template>
 
 <style scoped>
@@ -43,9 +52,18 @@ defineProps<{
   cursor: not-allowed;
 }
 
-.sm { padding: 8px 16px; font-size: 0.875rem; }
-.base { padding: 12px 24px; font-size: 1rem; }
-.lg { padding: 16px 32px; font-size: 1.125rem; }
+.sm {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+}
+.base {
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+.lg {
+  padding: 16px 32px;
+  font-size: 1.125rem;
+}
 
 .primary {
   background: var(--color-accent);
@@ -98,6 +116,8 @@ defineProps<{
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

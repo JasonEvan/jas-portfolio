@@ -44,7 +44,9 @@
       </main>
     </div>
 
-    <Toaster position="top-right" richColors />
+    <ClientOnly>
+      <Toaster position="top-right" richColors />
+    </ClientOnly>
   </div>
 </template>
 
@@ -59,6 +61,7 @@ import {
   LogOut as LucideLogOut,
 } from "lucide-vue-next";
 import { Toaster } from "vue-sonner";
+import "vue-sonner/style.css";
 
 definePageMeta({ middleware: "auth" });
 
