@@ -5,13 +5,19 @@ const heroTitle = ref(null)
 const heroSubtitle = ref(null)
 const heroCta = ref(null)
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick()
+  
   if (heroTitle.value) splitTextReveal(heroTitle.value)
   if (heroSubtitle.value) revealOnScroll(heroSubtitle.value, 0.5)
   if (heroCta.value) {
     revealOnScroll(heroCta.value, 0.8)
     magneticHover(heroCta.value)
   }
+
+  // Refresh scroll trigger after layout settles
+  const { $ScrollTrigger } = useNuxtApp()
+  if ($ScrollTrigger) ($ScrollTrigger as any).refresh()
 })
 </script>
 
@@ -48,13 +54,14 @@ onMounted(() => {
 }
 
 .container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
   align-items: center;
-  gap: 40px;
+  gap: 60px;
 }
 
 .hero-content {

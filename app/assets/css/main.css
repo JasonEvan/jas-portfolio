@@ -61,10 +61,13 @@ body {
 
 h1 {
   font-family:     var(--font-heading);
-  font-size:       clamp(3rem, 8vw, 7.5rem);
-  line-height:     0.92;
-  letter-spacing:  -0.03em;
+  font-size:       clamp(2rem, 8vw, 5.5rem);
+  line-height:     0.85;
+  letter-spacing:  -0.04em;
   font-weight:     800;
+  text-transform:  uppercase;
+  word-break:      keep-all;
+  overflow-wrap:   normal;
 }
 
 h2 {
@@ -106,6 +109,18 @@ h3 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: block;
+}
+
+/* Fix for SplitType compatibility */
+.text-gradient .char, 
+.text-gradient .word {
+  background: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 /* Garis dekoratif dengan gradient */

@@ -38,16 +38,27 @@ export const useGsap = () => {
     if (!gsap || !import.meta.client) return;
 
     const split = new SplitType(el, { types: "chars,words" });
-    return gsap.from(split.chars, {
-      opacity: 0,
-      y: 30,
-      rotationX: -80,
-      transformOrigin: "50% 50% -50",
-      stagger: 0.022,
-      duration: 0.55,
-      ease: "back.out(1.4)",
-      scrollTrigger: { trigger: el, start: "top 82%" },
-    });
+    
+    // Gunakan fromTo agar lebih pasti elemen berakhir di opacity 1
+    return gsap.fromTo(split.chars, 
+      {
+        opacity: 0,
+        y: 60,
+        rotationX: -90,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        rotationX: 0,
+        stagger: 0.02,
+        duration: 1.2,
+        ease: "power4.out",
+        // Force visibility at the end
+        onComplete: () => {
+          gsap.set(split.chars, { clearProps: "all" });
+        }
+      }
+    );
   };
 
   /** Counter angka dari 0 ke nilai target */

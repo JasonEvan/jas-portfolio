@@ -24,7 +24,8 @@ const config: LanyardConfig = {
   cardTexturePath:      '/images/lanyard/card-template.png',
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick()
   if (!canvasRef.value) return
 
   const physics                                   = createLanyardPhysics(config)
@@ -35,6 +36,7 @@ onMounted(() => {
   // Tampilkan foto dari Firestore base64
   if (props.photoBase64) setPhotoBase64(props.photoBase64)
 
+  lastTs = performance.now()
   const loop = (ts: number) => {
     const dt = (ts - lastTs) / 1000
     lastTs   = ts
@@ -44,6 +46,11 @@ onMounted(() => {
     rafId = requestAnimationFrame(loop)
   }
   rafId = requestAnimationFrame(loop)
+
+  // Force resize after a short delay to ensure DOM dimensions are settled
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'))
+  }, 100)
 
   onUnmounted(() => { cancelAnimationFrame(rafId); cleanDrag(); dispose() })
 })
@@ -66,13 +73,17 @@ watch(() => props.photoBase64, (val) => {
   position: relative;
   width: 100%;
   max-width: 380px;
-  aspect-ratio: 9 / 16;
+  height: 700px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lanyard-canvas {
   width: 100%;
   height: 100%;
   border-radius: 20px;
+  cursor: grab;
 }
 .lanyard-hint {
   position: absolute;
