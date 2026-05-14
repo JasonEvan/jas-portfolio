@@ -87,10 +87,16 @@ const getSkillsByCategory = (category: string) => {
 }
 
 .section-title {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 16px;
   font-family: var(--font-heading);
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
 }
 
 .section-subtitle {
