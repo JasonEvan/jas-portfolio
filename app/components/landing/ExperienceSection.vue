@@ -274,11 +274,19 @@ const formatDate = (dateStr: string | null) => {
   object-fit: cover;
 }
 
+.header-main {
+  flex: 1;
+  min-width: 0;
+}
+
 .role-title {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 4px;
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .company-row {
@@ -290,6 +298,9 @@ const formatDate = (dateStr: string | null) => {
 .company-name {
   font-weight: 600;
   color: var(--color-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .company-link {
