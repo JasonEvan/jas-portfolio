@@ -51,7 +51,6 @@ export interface Skill {
   category: string;
   iconBase64: string;
   level: number;
-  orderIndex: number;
 }
 
 export interface Testimonial {
