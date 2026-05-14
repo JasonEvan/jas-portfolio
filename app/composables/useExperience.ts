@@ -19,7 +19,7 @@ export const useExperience = () => {
   const getAll = async () => {
     if (!col) return [];
     try {
-      const snap = await getDocs(query(col, orderBy("orderIndex")));
+      const snap = await getDocs(query(col, orderBy("startDate", "desc")));
       const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       return stringifyFirestoreData(data) as Experience[];
     } catch (err) {

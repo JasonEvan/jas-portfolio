@@ -43,7 +43,6 @@ export interface Experience {
   isCurrent: boolean;
   logoBase64: string;
   companyUrl: string;
-  orderIndex: number;
 }
 
 export interface Skill {
