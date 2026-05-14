@@ -191,7 +191,7 @@ portfolio/
 │           └── [id].vue
 │
 ├── plugins/
-│   ├── gsap.client.ts            # Inisialisasi GSAP + plugin
+│   ├── gsap.ts                   # Inisialisasi GSAP + plugin (SSR-safe)
 │   └── firebase.client.ts        # Inisialisasi Firebase (client-side only)
 │
 ├── server/
