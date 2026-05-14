@@ -19,14 +19,15 @@ export interface Project {
   slug: string;
   description: string;
   content: string;
+  status: "done" | "not";
   coverBase64: string | null;
   coverThumb: string;
+  images?: string[];
   techStack: string[];
   projectUrl: string;
   repoUrl: string;
   isFeatured: boolean;
   isPublished: boolean;
-  orderIndex: number;
   hasSeparateImage?: boolean;
   createdAt?: any;
   updatedAt?: any;

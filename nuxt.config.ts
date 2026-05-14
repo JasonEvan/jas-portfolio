@@ -39,7 +39,6 @@ export default defineNuxtConfig({
 
   routeRules: {
     "/": { prerender: true },
-    "/projects/**": { isr: 3600 },
     "/admin/**": { ssr: false }, // Admin = SPA murni (Firebase adalah client SDK)
   },
 

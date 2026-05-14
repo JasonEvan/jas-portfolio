@@ -12,22 +12,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-export interface Project {
-  id?: string;
-  title: string;
-  slug: string;
-  description: string;
-  content: string;
-  coverBase64: string | null;
-  coverThumb: string;
-  techStack: string[];
-  projectUrl: string;
-  repoUrl: string;
-  isFeatured: boolean;
-  isPublished: boolean;
-  orderIndex: number;
-  hasSeparateImage?: boolean;
-}
+import type { Project } from "~/types/models";
 
 export const useProjects = () => {
   const { db } = useFirebase();
@@ -37,14 +22,14 @@ export const useProjects = () => {
   const getAll = async (publishedOnly = false) => {
     if (!col) return [];
     const constraints: any[] = publishedOnly
-      ? [where("isPublished", "==", true), orderBy("orderIndex")]
-      : [orderBy("orderIndex")];
+      ? [where("isPublished", "==", true)]
+      : [orderBy("title")];
 
     try {
       const snap = await getDocs(query(col, ...constraints));
       const data = snap.docs.map((d) => {
         const docData = d.data();
-        const { coverBase64, ...rest } = docData;
+        const { coverBase64, images, ...rest } = docData;
         return { id: d.id, ...rest };
       });
       return stringifyFirestoreData(data) as Project[];
