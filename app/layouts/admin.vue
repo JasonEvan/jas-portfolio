@@ -56,6 +56,7 @@ import {
   User,
   FolderOpen,
   Briefcase,
+  Award,
   Zap,
   MessageSquare,
   LogOut as LucideLogOut,
@@ -74,6 +75,7 @@ const navItems = [
   { icon: User, label: "Profil", to: "/admin/profile" },
   { icon: FolderOpen, label: "Proyek", to: "/admin/projects" },
   { icon: Briefcase, label: "Pengalaman", to: "/admin/experience" },
+  { icon: Award, label: "Sertifikat", to: "/admin/certificates" },
   { icon: Zap, label: "Skill", to: "/admin/skills" },
   { icon: MessageSquare, label: "Testimoni", to: "/admin/testimonials" },
 ];

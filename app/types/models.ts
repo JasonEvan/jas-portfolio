@@ -63,3 +63,15 @@ export interface Testimonial {
   isPublished: boolean;
   orderIndex: number;
 }
+
+export interface Certificate {
+  id?: string;
+  title: string;
+  issuer: string;
+  issueDate: string;
+  expiryDate: string | null;
+  credentialId: string;
+  credentialUrl: string;
+  imageBase64: string;
+  isFeatured: boolean;
+}
