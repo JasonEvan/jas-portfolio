@@ -35,7 +35,7 @@ export const useProfile = () => {
       }
     }
 
-    return data;
+    return stringifyFirestoreData(data) as Profile;
   };
 
   const updateProfile = async (data: Partial<Profile>) => {

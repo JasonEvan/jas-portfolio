@@ -42,11 +42,12 @@ export const useProjects = () => {
 
     try {
       const snap = await getDocs(query(col, ...constraints));
-      return snap.docs.map((d) => {
-        const data = d.data();
-        const { coverBase64, ...rest } = data;
+      const data = snap.docs.map((d) => {
+        const docData = d.data();
+        const { coverBase64, ...rest } = docData;
         return { id: d.id, ...rest };
       });
+      return stringifyFirestoreData(data) as Project[];
     } catch (err) {
       console.error("Error fetching projects:", err);
       return [];
@@ -64,7 +65,8 @@ export const useProjects = () => {
     if (snap.empty || !snap.docs[0]) return null;
 
     const docData = snap.docs[0].data();
-    return { id: snap.docs[0].id, ...docData } as Project;
+    const data = { id: snap.docs[0].id, ...docData };
+    return stringifyFirestoreData(data) as Project;
   };
 
   const create = async (payload: Partial<Project>) => {

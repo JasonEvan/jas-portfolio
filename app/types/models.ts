@@ -28,8 +28,8 @@ export interface Project {
   isPublished: boolean;
   orderIndex: number;
   hasSeparateImage?: boolean;
-  createdAt?: Timestamp;
-  updatedAt?: Timestamp;
+  createdAt?: any;
+  updatedAt?: any;
 }
 
 export interface Experience {

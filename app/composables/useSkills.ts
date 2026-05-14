@@ -20,7 +20,8 @@ export const useSkills = () => {
     if (!col) return [];
     try {
       const snap = await getDocs(query(col, orderBy("name")));
-      return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Skill);
+      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      return stringifyFirestoreData(data) as Skill[];
     } catch (err) {
       console.error("Error fetching skills:", err);
       return [];

@@ -20,7 +20,8 @@ export const useExperience = () => {
     if (!col) return [];
     try {
       const snap = await getDocs(query(col, orderBy("orderIndex")));
-      return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Experience);
+      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      return stringifyFirestoreData(data) as Experience[];
     } catch (err) {
       console.error("Error fetching experience:", err);
       return [];

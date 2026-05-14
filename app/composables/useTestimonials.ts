@@ -25,7 +25,8 @@ export const useTestimonials = () => {
 
     try {
       const snap = await getDocs(query(col, ...constraints));
-      return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Testimonial);
+      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      return stringifyFirestoreData(data) as Testimonial[];
     } catch (err) {
       console.error("Error fetching testimonials:", err);
       return [];
