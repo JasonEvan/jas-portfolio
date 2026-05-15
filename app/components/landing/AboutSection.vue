@@ -69,7 +69,9 @@ onMounted(() => {
                   Modern Web
                 </h3>
               </div>
-              <p class="mt-3 text-sm text-slate-300/80">Next.js &amp; NestJS</p>
+              <p class="mt-3 text-sm text-slate-300/80">
+                Nuxt, Next.js, &amp; NestJS
+              </p>
             </div>
 
             <div
@@ -84,7 +86,9 @@ onMounted(() => {
                   Database
                 </h3>
               </div>
-              <p class="mt-3 text-sm text-slate-300/80">Scalable MySQL</p>
+              <p class="mt-3 text-sm text-slate-300/80">
+                Scalable MySQL & PostgreSQL
+              </p>
             </div>
 
             <div
@@ -196,7 +200,6 @@ onMounted(() => {
 
             <div class="mt-6 rounded-xl border border-white/10 bg-white/5 p-5">
               <div class="flex items-start gap-3">
-                <Code2 class="mt-0.5 h-5 w-5 text-slate-200/80" />
                 <p class="text-sm text-slate-300/85">
                   Fokus saya adalah membangun sistem yang scalable dan
                   teroptimasi, menjembatani logika backend yang kompleks dengan
