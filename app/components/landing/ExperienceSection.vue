@@ -284,23 +284,17 @@ const formatDate = (dateStr: string | null) => {
   font-weight: 700;
   margin-bottom: 4px;
   line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .company-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
 }
 
 .company-name {
   font-weight: 600;
   color: var(--color-accent);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .company-link {
