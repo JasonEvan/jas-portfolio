@@ -38,7 +38,7 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    "/": { prerender: true },
+    // "/": { prerender: true }, // Removed to allow fresh data on every request
     "/admin/**": { ssr: false }, // Admin = SPA murni (Firebase adalah client SDK)
   },
 
